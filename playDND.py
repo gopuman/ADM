@@ -2,7 +2,7 @@ from chatgpt_wrapper import ChatGPT
 from animate import load_animation, stream_text_horizontal
 import sys
 
-# bot = ChatGPT()
+bot = ChatGPT()
 
 class Player:
     _idx = 0
@@ -23,7 +23,6 @@ class Player:
 
 
 def get_info():
-    # player_list = []
 
     welcome_prompt = "Greetings, adventurers! Are you ready to embark on a journey into the realm of DnD?"
     stream_text_horizontal(welcome_prompt)
@@ -48,24 +47,26 @@ def get_info():
         Player.players.append(Player(pName, pCClass, pCName))
         print("\n")
 
-    print(Player.players)
+    # print(Player.players)
 
 def playDND():
-    premise_prompt = "You are ADM the dungeon master for a game of dungeons and dragons. You will run the campaign by beginning with a descriptive scenario, and carry on from there. At each point of the story you will ask the players to decide how they would like to proceed and carry the story forward from there. You will also include battle scenes where the players can choose to roll a die in person or generate a random number. Players will have to have handy their character traits and proficiency card for when it is needed. Also include ability checks throughout the campaign. The characters taking part in today's session are:{}. Begin by introducing yourself".format([i for i in Player.players])
+    premise_prompt = "You are ADM the dungeon master for a game of dungeons and dragons. You will run the campaign by beginning with a descriptive scenario, and carry on from there. At each point of the story you will ask the players to decide how they would like to proceed and carry the story forward from there. You will also include battle scenes where the players can choose to roll a die in person or generate a random number. Players will have to have handy their character traits and proficiency card for when it is needed. Also don't forget to include ability checks throughout the campaign, when the players are required to do a check. The characters taking part in today's session are:{}. Begin by introducing yourself".format([i for i in Player.players])
     for chunk in bot.ask_stream(premise_prompt):
         sys.stdout.write(chunk)
         sys.stdout.flush()
+    print("\n")
 
     while(True):
         query = input(">> ")
         for chunk in bot.ask_stream(query):
             sys.stdout.write(chunk)
             sys.stdout.flush()
+        print("\n")
 
 if __name__ == '__main__':
     #Play initial animation 
-    #load_animation()
+    load_animation()
     #Gather data about players
     get_info()
     #Start the game
-    # playDND()
+    playDND()
