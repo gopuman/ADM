@@ -4,6 +4,14 @@ import sys
 
 bot = ChatGPT()
 
+class Story:
+    def __init__(self, content, players) -> None:
+        self.campaign = content
+        self.players = players
+
+    def __str__(self) -> str:
+        
+
 class Player:
     _idx = 0
     players = []
@@ -39,18 +47,22 @@ def get_info():
     for i in range(n_players):
         curr_player = "Player " + str(i+1)
         stream_text_horizontal("Enter Name for "+curr_player)
-        pName = input()
+        pName = input(">> ")
         stream_text_horizontal("Enter Character Class for "+curr_player)
-        pCClass = input()
+        pCClass = input(">> ")
         stream_text_horizontal("Enter Character Name for "+curr_player)
-        pCName = input()
+        pCName = input(">> ")
         Player.players.append(Player(pName, pCClass, pCName))
         print("\n")
 
     # print(Player.players)
 
 def playDND():
-    premise_prompt = "You are ADM the dungeon master for a game of dungeons and dragons. You will run the campaign by beginning with a descriptive scenario, and carry on from there. At each point of the story you will ask the players to decide how they would like to proceed and carry the story forward from there. You will also include battle scenes where the players can choose to roll a die in person or generate a random number. Players will have to have handy their character traits and proficiency card for when it is needed. Also don't forget to include ability checks throughout the campaign, when the players are required to do a check. The characters taking part in today's session are:{}. Begin by introducing yourself".format([i for i in Player.players])
+    filename = "identity.txt"
+    with open(filename, 'r') as f:
+        content = f.read()
+    premise_prompt = content.format([i for i in Player.players])
+
     for chunk in bot.ask_stream(premise_prompt):
         sys.stdout.write(chunk)
         sys.stdout.flush()
