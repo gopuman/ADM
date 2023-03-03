@@ -1,0 +1,4 @@
+chatGPT==0.3.17
+gradio==3.19.1
+openai==0.26.4
+SpeechRecognition==3.9.0
