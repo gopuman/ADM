@@ -1,4 +1,4 @@
-<center><h1>ADM - Automated Dungeon Master</h1></center>
+<h1><p align="center">:robot: ADM - Automated Dungeon Master :joystick:</p></h1>
 
 Welcome to the ADM - Automated Dungeon Master repository! This software allows users to play a game of DND campaign with a fully automated dungeon master powered by AI.
 
