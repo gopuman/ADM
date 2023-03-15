@@ -2,7 +2,7 @@
 
 Welcome to the ADM - Automated Dungeon Master repository! This software allows users to play a game of DND campaign with a fully automated dungeon master powered by AI.
 
-## Installation
+## Installation ([ChatGPT Wrapper](https://github.com/mmabrouk/chatgpt-wrapper))
 
 1. Install the latest version of this software directly from github with pip:
 
@@ -46,4 +46,4 @@ python3 playDND.py
 
 
 ## License
-TThis project is licensed under the Apache License 2.0. See the LICENSE file for more information.
+This project is licensed under the Apache License 2.0. See the LICENSE file for more information.
