@@ -1,16 +1,24 @@
 from chatgpt_wrapper import ChatGPT
 from animate import load_animation, stream_text_horizontal
+from campaign import cleanup, save
 import sys
 
 bot = ChatGPT()
 
-class Story:
-    def __init__(self, content, players) -> None:
-        self.campaign = content
-        self.players = players
+# Return the story to the summarizer.
 
-    def __str__(self) -> str:
-        
+
+class Story:
+    def __init__(self, content) -> None:
+        self.campaign = content
+
+    def __str__(self):
+        return ' '.join(self.campaign)
+
+    def saveGame(self):
+        formatted_campaign = cleanup(self.__str__())
+        save(formatted_campaign)
+
 
 class Player:
     _idx = 0
@@ -55,30 +63,43 @@ def get_info():
         Player.players.append(Player(pName, pCClass, pCName))
         print("\n")
 
-    # print(Player.players)
 
 def playDND():
+    campaign = []
+    prem = []
+
     filename = "identity.txt"
     with open(filename, 'r') as f:
         content = f.read()
     premise_prompt = content.format([i for i in Player.players])
 
     for chunk in bot.ask_stream(premise_prompt):
+        prem.append(chunk)
         sys.stdout.write(chunk)
         sys.stdout.flush()
+    campaign.append("".join(prem))
     print("\n")
 
-    while(True):
+    while (True):
+        chunks = []
         query = input(">> ")
+        if (query == "quit"):
+            story = Story(campaign)
+            # print(story)
+            story.saveGame()
+            break
         for chunk in bot.ask_stream(query):
+            chunks.append(chunk)
             sys.stdout.write(chunk)
             sys.stdout.flush()
+        campaign.append(" ".join(chunks))
         print("\n")
 
+
 if __name__ == '__main__':
-    #Play initial animation 
+    # Play initial animation
     load_animation()
-    #Gather data about players
+    # Gather data about players
     get_info()
-    #Start the game
+    # Start the game
     playDND()
