@@ -7,7 +7,7 @@ def cleanup(campaign):
 
 def save(formatted_campaign):
     counter = 0
-    filename = "story{}.txt"
+    filename = "stories/story{}.txt"
     while os.path.isfile(filename.format(counter)):
         counter += 1
     filename = filename.format(counter)

@@ -5,10 +5,8 @@ import sys
 
 bot = ChatGPT()
 
-# Return the story to the summarizer.
-
-
 class Story:
+    # Return the story to the summarizer.
     def __init__(self, content) -> None:
         self.campaign = content
 
@@ -92,7 +90,7 @@ def playDND():
             chunks.append(chunk)
             sys.stdout.write(chunk)
             sys.stdout.flush()
-        campaign.append(" ".join(chunks))
+        campaign.append("".join(chunks))
         print("\n")
 
 
