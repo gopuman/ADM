@@ -1,6 +1,7 @@
 from chatgpt_wrapper import ChatGPT
 from animate import load_animation, stream_text_horizontal
 from campaign import cleanup, save
+from runflask import runFlask
 import sys
 
 bot = ChatGPT()
@@ -104,3 +105,4 @@ if __name__ == '__main__':
     get_info()
     # Start the game
     playDND()
+    runFlask()
