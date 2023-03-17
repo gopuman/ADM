@@ -1,0 +1,49 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    background-color: #6D4C41;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .title {
+    color: #F0E68C;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 40px;
+    margin: 0;
+  }
+  
+  .album {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .photo {
+    margin: 10px;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  }
+  
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s;
+  }
+  
+  .photo img:hover {
+    transform: scale(1.1);
+  }
+  
+  body {
+    font-family: 'IM Fell English SC', serif;
+    background-color: #F5DEB3;
+  }
+  

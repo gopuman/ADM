@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo Album</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">DnD Campaign Photo Album</h1>
+        </div>
+        <div class="album">
+            {% for image in image_names %}
+                <div class="photo">
+                    <img src="{{ url_for('static', filename='images/' + image) }}">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

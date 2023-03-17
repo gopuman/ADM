@@ -22,18 +22,19 @@ class Player:
     _idx = 0
     players = []
 
-    def __init__(self, playerName, charClass, charName) -> None:
+    def __init__(self, playerName, charClass, charName, charRace) -> None:
         Player._idx += 1
         self.idx = self._idx
         self.playerName = playerName
         self.charClass = charClass
         self.charName = charName
+        self.charRace = charRace
 
     def __str__(self) -> str:
-        return "Player {} -> Name:{}, Character Class:{}, Character Name:{}".format(self.idx, self.playerName, self.charClass, self.charName)
+        return "Player {} -> Name:{}, Character Class:{}, Character Name:{}, Character Race:{}".format(self.idx, self.playerName, self.charClass, self.charName, self.charRace)
 
     def __repr__(self) -> str:
-        return self.charName + " the " + self.charClass
+        return self.charName + " the " + self.charClass + " of " + self.charRace + " race"
 
 
 def get_info():
@@ -58,7 +59,9 @@ def get_info():
         pCClass = input(">> ")
         stream_text_horizontal("Enter Character Name for "+curr_player)
         pCName = input(">> ")
-        Player.players.append(Player(pName, pCClass, pCName))
+        stream_text_horizontal("Enter Character Race for "+curr_player)
+        pCRace = input(">> ")
+        Player.players.append(Player(pName, pCClass, pCName, pCRace))
         print("\n")
 
 
@@ -66,7 +69,7 @@ def playDND():
     campaign = []
     prem = []
 
-    filename = "identity.txt"
+    filename = "identity2.txt"
     with open(filename, 'r') as f:
         content = f.read()
     premise_prompt = content.format([i for i in Player.players])
