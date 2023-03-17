@@ -3,6 +3,7 @@ from animate import load_animation, stream_text_horizontal
 from campaign import cleanup, save
 from runflask import runFlask
 import sys
+import importlib
 
 bot = ChatGPT()
 
@@ -16,8 +17,12 @@ class Story:
 
     def saveGame(self):
         formatted_campaign = cleanup(self.__str__())
-        save(formatted_campaign)
+        filename = save(formatted_campaign)
+        self.summarizeCampaign(filename)
 
+    def summarizeCampaign(self, storyFile):
+        summarizer = importlib.import_module("bert-cnn")
+        summarizer.bert_model(storyFile)
 
 class Player:
     _idx = 0
@@ -89,6 +94,7 @@ def playDND():
             story = Story(campaign)
             # print(story)
             story.saveGame()
+            runFlask()
             break
         for chunk in bot.ask_stream(query):
             chunks.append(chunk)
@@ -105,4 +111,3 @@ if __name__ == '__main__':
     get_info()
     # Start the game
     playDND()
-    runFlask()

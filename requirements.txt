@@ -1,4 +1,6 @@
 chatGPT==0.3.17
-gradio==3.19.1
+click==8.1.3
+Flask==2.2.3
 openai==0.26.4
-SpeechRecognition==3.9.0
+rouge==1.0.1
+transformers==4.27.1

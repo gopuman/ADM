@@ -14,3 +14,5 @@ def save(formatted_campaign):
 
     with open(filename, 'w') as f:
         f.write(formatted_campaign)
+
+    return filename

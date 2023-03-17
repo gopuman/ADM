@@ -5,7 +5,8 @@ def distilbert_model(storyfile):
     tokenizer = AutoTokenizer.from_pretrained("sshleifer/distilbart-cnn-12-6")
     model = AutoModelForSeq2SeqLM.from_pretrained("sshleifer/distilbart-cnn-12-6")
 
-    storyPath = "stories/" + storyfile
+    # storyPath = "stories/" + storyfile
+    storyPath = storyfile
     f = open(storyPath, "r")
     STORY = f.read()
     # inputs = tokenizer("summarize: " + STORY, return_tensors="pt", max_length=10000, truncation=True)
@@ -35,7 +36,8 @@ def googleT5_model(storyfile):
     model = AutoModelForSeq2SeqLM.from_pretrained("t5-base")
     tokenizer = AutoTokenizer.from_pretrained("t5-base")
 
-    storyPath = "stories/" + storyfile
+    # storyPath = "stories/" + storyfile
+    storyPath = storyfile
     f = open(storyPath, "r")
     STORY = f.read()
 
@@ -65,7 +67,8 @@ def bert_model(storyfile):
     tokenizer = AutoTokenizer.from_pretrained("philschmid/bart-large-cnn-samsum")
     model = AutoModelForSeq2SeqLM.from_pretrained("philschmid/bart-large-cnn-samsum")
 
-    storyPath = "stories/" + storyfile
+    # storyPath = "stories/" + storyfile
+    storyPath = storyfile
     f = open(storyPath, "r")
     STORY = f.read()
     # inputs = tokenizer("summarize: " + STORY, return_tensors="pt", max_length=100000, truncation=True)
@@ -91,20 +94,20 @@ def bert_model(storyfile):
     return summary
 
 
-for i in range(0, 10):
-    STORY_NAME = 'story_' + str(i) + '.txt'
+# for i in range(0, 10):
+#     STORY_NAME = 'story_' + str(i) + '.txt'
 
-    summary_bert = bert_model(STORY_NAME)
+#     summary_bert = bert_model(STORY_NAME)
 
-    print('Bert-cnn generated summary: \n')
-    print(summary_bert)
+#     print('Bert-cnn generated summary: \n')
+#     print(summary_bert)
 
-    summary_googleT5 = googleT5_model(STORY_NAME)
+#     summary_googleT5 = googleT5_model(STORY_NAME)
 
-    print('google T5 generated summary: \n')
-    print(summary_googleT5)
+#     print('google T5 generated summary: \n')
+#     print(summary_googleT5)
 
-    summary_distilbert = distilbert_model(STORY_NAME)
+#     summary_distilbert = distilbert_model(STORY_NAME)
 
-    print('distilbert generated summary: \n')
-    print(summary_distilbert)
+#     print('distilbert generated summary: \n')
+#     print(summary_distilbert)
