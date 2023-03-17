@@ -1,6 +1,34 @@
 
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
+def distilbert_model(storyfile):
+    tokenizer = AutoTokenizer.from_pretrained("sshleifer/distilbart-cnn-12-6")
+    model = AutoModelForSeq2SeqLM.from_pretrained("sshleifer/distilbart-cnn-12-6")
+
+    storyPath = "stories/" + storyfile
+    f = open(storyPath, "r")
+    STORY = f.read()
+    inputs = tokenizer("summarize: " + STORY, return_tensors="pt", max_length=10000, truncation=True)
+    outputs = model.generate(
+        inputs["input_ids"], max_length=400, min_length=40, length_penalty=2.0, num_beams=4, early_stopping=False
+    )
+
+    summary = tokenizer.decode(outputs[0])
+    summary = summary.strip('</s>')
+    summary = summary.strip('<s>')
+    summary += '\n\n\n'
+
+    sf = storyfile.strip(".txt")
+    sf = sf.split("_")
+    summaryName = 'summary' + '_' + sf[1]
+
+    summaryFilename = 'summaries/' + summaryName + '.txt'
+    f = open(summaryFilename, "a")
+    f.write(summary)
+    f.close()
+
+    return summary
+
 def googleT5_model(storyfile):
 
     model = AutoModelForSeq2SeqLM.from_pretrained("t5-base")
@@ -73,3 +101,7 @@ summary_googleT5 = googleT5_model('story_0.txt')
 print('google T5 generated summary: \n')
 print(summary_googleT5)
 
+summary_distilbert = distilbert_model('story_0.txt')
+
+print('distilbert generated summary: \n')
+print(summary_distilbert)
