@@ -8,7 +8,8 @@ def distilbert_model(storyfile):
     storyPath = "stories/" + storyfile
     f = open(storyPath, "r")
     STORY = f.read()
-    inputs = tokenizer("summarize: " + STORY, return_tensors="pt", max_length=10000, truncation=True)
+    # inputs = tokenizer("summarize: " + STORY, return_tensors="pt", max_length=10000, truncation=True)
+    inputs = tokenizer(STORY, return_tensors="pt", truncation=True)
     outputs = model.generate(
         inputs["input_ids"], max_length=400, min_length=40, length_penalty=2.0, num_beams=4, early_stopping=False
     )
@@ -41,7 +42,7 @@ def googleT5_model(storyfile):
     # T5 uses a max_length of 512 so we cut the article to 512 tokens.
     inputs = tokenizer("summarize: " + STORY, return_tensors="pt", max_length=10000, truncation=True)
     outputs = model.generate(
-        inputs["input_ids"], max_length=400, min_length=40, length_penalty=2.0, num_beams=4, early_stopping=False
+    inputs["input_ids"], max_length=400, min_length=40, length_penalty=2.0, num_beams=4, early_stopping=False
     )
 
     summary = tokenizer.decode(outputs[0])
@@ -67,7 +68,8 @@ def bert_model(storyfile):
     storyPath = "stories/" + storyfile
     f = open(storyPath, "r")
     STORY = f.read()
-    inputs = tokenizer("summarize: " + STORY, return_tensors="pt", max_length=10000, truncation=True)
+    # inputs = tokenizer("summarize: " + STORY, return_tensors="pt", max_length=100000, truncation=True)
+    inputs = tokenizer(STORY, return_tensors="pt", truncation=True)
     outputs = model.generate(
         inputs["input_ids"], max_length=400, min_length=40, length_penalty=2.0, num_beams=4, early_stopping=False
     )
@@ -89,19 +91,20 @@ def bert_model(storyfile):
     return summary
 
 
+for i in range(0, 10):
+    STORY_NAME = 'story_' + str(i) + '.txt'
 
+    summary_bert = bert_model(STORY_NAME)
 
-summary_bert = bert_model('story_0.txt')
+    print('Bert-cnn generated summary: \n')
+    print(summary_bert)
 
-print('Bert-cnn generated summary: \n')
-print(summary_bert)
+    summary_googleT5 = googleT5_model(STORY_NAME)
 
-summary_googleT5 = googleT5_model('story_0.txt')
+    print('google T5 generated summary: \n')
+    print(summary_googleT5)
 
-print('google T5 generated summary: \n')
-print(summary_googleT5)
+    summary_distilbert = distilbert_model(STORY_NAME)
 
-summary_distilbert = distilbert_model('story_0.txt')
-
-print('distilbert generated summary: \n')
-print(summary_distilbert)
+    print('distilbert generated summary: \n')
+    print(summary_distilbert)
