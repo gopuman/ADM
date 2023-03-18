@@ -2,6 +2,7 @@ from chatgpt_wrapper import ChatGPT
 from animate import load_animation, stream_text_horizontal
 from campaign import cleanup, save
 from runflask import runFlask
+import os
 import sys
 import importlib
 
@@ -70,12 +71,14 @@ def get_info():
         Player.players.append(Player(pName, pCClass, pCName, pCRace))
         print("\n")
 
+    os.system("clear")
+
 
 def playDND():
     campaign = []
     prem = []
 
-    filename = "identity2.txt"
+    filename = "identity.txt"
     with open(filename, 'r') as f:
         content = f.read()
     premise_prompt = content.format([i for i in Player.players])
@@ -92,8 +95,9 @@ def playDND():
         query = input(">> ")
         if (query == "quit"):
             story = Story(campaign)
-            # print(story)
+            stream_text_horizontal("Summarizing the campaign ...")
             story.saveGame()
+            stream_text_horizontal("Generating images from capmaign ...")
             runFlask()
             break
         for chunk in bot.ask_stream(query):
