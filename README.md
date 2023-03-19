@@ -1,8 +1,14 @@
 <h1><p align="center">:robot: ADM - Automated Dungeon Master :joystick:</p></h1>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.8%20%7C%203.9%20%7C%203.10-blue.svg" alt="Python version">
+  <img src="https://img.shields.io/github/repo-size/gopuman/ADM" alt="Repo size">
+</p>
+
 Welcome to the ADM - Automated Dungeon Master repository! This software allows users to play a game of DND campaign with a fully automated dungeon master powered by AI.
 
 ## Installation
+To install the required packages, run the following command:
 ```bash
 pip install -r requirements.txt
 ```
@@ -50,17 +56,13 @@ python3 playDND.py
 ```
 ## Contributors
 
-<a href="https://github.com/gopuman">
-<img src="https://github.com/gopuman.png" width="48">
-</a>
-
-<a href="https://github.com/Mahek-jain">
-<img src="https://github.com/Mahek-jain.png" width="48">
-</a>
-
-<a href="https://github.com/Ruthuvikas">
-<img src="https://github.com/Ruthuvikas.png" width="48">
-</a>
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/gopuman"><img src="https://github.com/gopuman.png" width="100px;" alt=""/><br /><sub><b>Gopal</b></sub></a></td>
+    <td align="center"><a href="https://github.com/Mahek-jain"><img src="https://github.com/Mahek-jain.png" width="100px;" alt=""/><br /><sub><b>Mahek</b></sub></a></td>
+    <td align="center"><a href="https://github.com/Ruthuvikas"><img src="https://github.com/Ruthuvikas.png" width="100px;" alt=""/><br /><sub><b>Ruthuvikas</b></sub></a></td>
+  </tr>
+</table>
 
 
 ## License
