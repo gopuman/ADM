@@ -31,7 +31,7 @@ for i in range(0, 10):
     f = open(MetricsFileName, "a")
     f.write(str(scores1))
     f.write('\n')
-    f.write(str(scores1))
+    f.write(str(scores2))
     f.close()
 
     print('scores1: ', scores1)
