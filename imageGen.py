@@ -3,9 +3,11 @@ import os
 import shutil
 from base64 import b64decode
 from pathlib import Path
-
 import openai
-openai.api_key = ""
+from dotenv import load_dotenv
+load_dotenv()
+
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 
 def prepare_prompts(fileName):

@@ -2,7 +2,11 @@
 
 Welcome to the ADM - Automated Dungeon Master repository! This software allows users to play a game of DND campaign with a fully automated dungeon master powered by AI.
 
-## Installation ([ChatGPT Wrapper](https://github.com/mmabrouk/chatgpt-wrapper))
+## Installation
+```bash
+pip install -r requirements.txt
+```
+- ### [ChatGPT Wrapper](https://github.com/mmabrouk/chatgpt-wrapper)
 
 1. Install the latest version of this software directly from github with pip:
 
@@ -23,6 +27,20 @@ chatgpt install
 ```
 
 4. Restart the program without the `install` parameter to begin using it.
+
+- ### [DALL-E 2](https://platform.openai.com/docs/introduction)
+
+1. Install the latest OpenAI python bindings.
+```bash
+pip install openai
+```
+2. The OpenAI API uses API keys for authentication. Visit your [API Keys](https://platform.openai.com/account/api-keys) page to retrieve the API key you'll use in your requests.
+
+
+3. Add your API key to the .env file in the root directory of the repository
+```bash
+OPENAI_API_KEY=<YOUR-API-KEY>
+```
 
 ## Usage
 1. Run the `playDND.py` file to begin the game

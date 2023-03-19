@@ -17,7 +17,7 @@ def preprocess_text(text):
     text = text.lower()
     return text
 
-preprocessed_stories = {filename: preprocess_text(text) for filename, text in `stories`.items()}
+preprocessed_stories = {filename: preprocess_text(text) for filename, text in stories.items()}
 
 # Create a TF-IDF matrix
 vectorizer = TfidfVectorizer()
