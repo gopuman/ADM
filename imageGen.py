@@ -5,7 +5,7 @@ from base64 import b64decode
 from pathlib import Path
 
 import openai
-openai.api_key = "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"
+openai.api_key = ""
 
 
 def prepare_prompts(fileName):
