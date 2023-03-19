@@ -99,6 +99,7 @@ def playDND():
         chunks = []
         query = input(">> ")
         if (query == "quit"):
+            os.system('clear')
             story = Story(campaign)
             stream_text_horizontal("Summarizing the campaign ...")
             summaryFile = story.saveGame()
