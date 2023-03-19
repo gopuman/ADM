@@ -91,7 +91,7 @@ def bert_model(storyfile):
     f.write(summary)
     f.close()
 
-    return summary
+    return summaryFilename
 
 
 # for i in range(0, 10):

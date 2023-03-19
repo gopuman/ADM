@@ -2,6 +2,7 @@ from chatgpt_wrapper import ChatGPT
 from animate import load_animation, stream_text_horizontal
 from campaign import cleanup, save
 from runflask import runFlask
+from imageGen import prepare_prompts
 import os
 import sys
 import importlib
@@ -19,11 +20,15 @@ class Story:
     def saveGame(self):
         formatted_campaign = cleanup(self.__str__())
         filename = save(formatted_campaign)
-        self.summarizeCampaign(filename)
+        summaryFile = self.summarizeCampaign(filename)
+        return summaryFile
 
     def summarizeCampaign(self, storyFile):
         summarizer = importlib.import_module("bert-cnn")
-        summarizer.bert_model(storyFile)
+        return summarizer.bert_model(storyFile)
+    
+    def generateImages(self, summaryFile):
+        prepare_prompts(summaryFile)
 
 class Player:
     _idx = 0
@@ -78,7 +83,7 @@ def playDND():
     campaign = []
     prem = []
 
-    filename = "identity.txt"
+    filename = "identity3.txt"
     with open(filename, 'r') as f:
         content = f.read()
     premise_prompt = content.format([i for i in Player.players])
@@ -96,8 +101,9 @@ def playDND():
         if (query == "quit"):
             story = Story(campaign)
             stream_text_horizontal("Summarizing the campaign ...")
-            story.saveGame()
-            stream_text_horizontal("Generating images from capmaign ...")
+            summaryFile = story.saveGame()
+            stream_text_horizontal("Generating images from campaign ...")
+            story.generateImages(summaryFile)
             runFlask()
             break
         for chunk in bot.ask_stream(query):
