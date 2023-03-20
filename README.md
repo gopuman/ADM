@@ -64,6 +64,12 @@ python3 playDND.py
   </tr>
 </table>
 
+## Future Work (To do)
+[] In-game Text-to-speech voiceover
+[] Speech-to-text input
+[] Input as character sheet
+[] Dynamic music generation
+[] Stable Diffusion over DALL-E
 
 ## License
 This project is licensed under the Apache License 2.0. See the LICENSE file for more information.
