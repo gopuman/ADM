@@ -1,5 +1,7 @@
 
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 def distilbert_model(storyfile):
     tokenizer = AutoTokenizer.from_pretrained("sshleifer/distilbart-cnn-12-6")

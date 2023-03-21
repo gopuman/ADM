@@ -83,7 +83,7 @@ def playDND():
     campaign = []
     prem = []
 
-    filename = "identity3.txt"
+    filename = "identity1.txt"
     with open(filename, 'r') as f:
         content = f.read()
     premise_prompt = content.format([i for i in Player.players])
