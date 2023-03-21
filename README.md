@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/github/repo-size/gopuman/ADM" alt="Repo size">
 </p>
 
-Welcome to the ADM - Automated Dungeon Master repository! This software allows users to play a game of DND campaign with a fully automated dungeon master powered by AI.
+Welcome to ADM - Automated Dungeon Master repository! ADM allows users to play a game of DND campaign with a fully automated dungeon master powered by GPT-3.
 
 ## Installation
 To install the required packages, run the following command:
